@@ -1,0 +1,80 @@
+
+// 比较服务器上的文件, 和本项目的文件
+// 看哪些文件不同, 把这些不同的文件单独复制到一个目录中.
+task copy(type: Copy) {
+
+    from '.'
+
+    include 'app/'
+    include 'config/'
+    include 'database/'
+    include 'public/'
+    include 'resources/'
+    include 'composer.json'
+    include 'composer.lock'
+
+    exclude 'public/image'
+    exclude '**/TestController.php'
+    exclude '**/TestModel.php'
+
+    def onlineDir = project.hasProperty('online-dir') ? project.'online-dir' : '../weipai3_online'
+    exclude {
+        def olFile = new File(onlineDir, it.relativePath.toString())
+        // 线上也有这个文件, 并且两者内容是相同的, 排除
+        olFile.isFile() && isContentSame(it.file, olFile)
+    }
+
+    def copyToDir = project.hasProperty('copy-to') ? project.'copy-to' : 'build'
+    into copyToDir
+
+    eachFile {
+        logger.info('copying: ' + it.getRelativePath())
+    }
+}
+
+task clean(type: Delete) {
+    delete 'build'
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def isTextFile(File f)
+{
+    def exts = [
+        '.php',
+        '.js',
+        '.css',
+    ]
+
+    exts.any({
+        f.name.endsWith(it)
+    })
+}
+
+
+def isContentSame(File f, File target)
+{
+    // 文本文件
+    if (isTextFile(f))
+    {
+        // 文件相同, 文本文件比较行
+        return f.readLines() == target.readLines()
+    } else
+    {
+        // 二进制, 比较字节
+        return f.bytes == target.bytes
+    }
+}
