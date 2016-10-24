@@ -49,6 +49,8 @@ class PmSqlLog
 
         $rs = [];
 
+		$lineNo = 1;
+
         while (! feof($fp))
         {
             $line = fgets($fp);
@@ -57,7 +59,9 @@ class PmSqlLog
                 continue;
             }
 
-            $rs[] = $line;
+            $rs[] = $lineNo . '|' . $line;
+			$lineNo ++;
+
             if (count($rs) > $this->readLineNum)
             {
                 array_shift($rs);
