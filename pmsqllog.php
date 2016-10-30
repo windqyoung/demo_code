@@ -2,7 +2,10 @@
 
 
 
-$log = new PmSqlLog(__DIR__ . '/../../pm.my/processmaker/shared/log/propel.log');
+$log = new PmSqlLog(
+	__DIR__ . '/../../pm.my/processmaker/shared/log/propel.log',
+	isset($_GET['n']) ? $_GET['n'] : 100
+);
 
 echo $log->showTable();
 
@@ -10,11 +13,12 @@ class PmSqlLog
 {
     private $logPath;
 
-    private $readLineNum = 100;
+    private $readLineNum;
 
-    public function __construct($logPath)
+    public function __construct($logPath, $readLineNum = 100)
     {
         $this->logPath = realpath($logPath);
+        $this->readLineNum = $readLineNum;
     }
 
 
