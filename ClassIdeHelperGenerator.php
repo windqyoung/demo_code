@@ -256,7 +256,9 @@ class ClassIdeHelperGenerator
                 } else {
                     $s .= ' = ' . var_export($p->getDefaultValue(), true);
                 }
-            }
+            } else if ($p->isOptional()) {
+                $s .= ' = null';
+			}
 
             $args[] = $s;
         }
