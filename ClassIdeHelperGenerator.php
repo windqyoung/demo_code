@@ -292,7 +292,9 @@ class ClassIdeHelperGenerator
 
     public function genSource()
     {
-        $source = "<?php namespace { exit('this is a ide helper file, do not include.'); }\n\n";
+		$version = Phalcon\Version::get();
+
+        $source = "<?php \n\n/**\n * Phalcon version $version\n */\nnamespace { exit('this is a ide helper file, do not include.'); }\n\n";
 
         foreach ($this->classes as $cls)
         {
@@ -322,3 +324,6 @@ class ClassIdeHelperGenerator
     }
 
 }
+
+
+
