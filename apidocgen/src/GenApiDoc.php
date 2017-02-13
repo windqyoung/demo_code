@@ -8,13 +8,13 @@ class GenApiDoc
             'name' => 'errorCode',
             'type' => 'int',
             'required' => true,
-            'desc' => 'code',
+            'desc' => '错误码',
         ],
         'errorMsg' => [
             'name' => 'errorMsg',
             'type' => 'string',
             'required' => true,
-            'desc' => '消息',
+            'desc' => '错误消息',
         ],
         'data' => [
             'name' => 'data',
