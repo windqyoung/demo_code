@@ -145,12 +145,15 @@ class GenApiDoc
 <?php if (! empty($doc['param'])) { ?>
 <p>参数: </p>
 <table border="1">
+<thead>
   <tr>
     <th>字段</th>
     <th>类型</th>
     <th>必需</th>
     <th>说明</th>
   </tr>
+</thead>
+<tbody>
   <?php foreach ($doc['param'] as $one) { ?>
   <tr>
     <td><?=$one['name']?></td>
@@ -160,6 +163,7 @@ class GenApiDoc
   </tr>
   <?php } ?>
 
+</tbody>
 </table>
 
 <?php } ?>
@@ -168,10 +172,13 @@ class GenApiDoc
 <?php if (! empty($doc['errorCode'])) { ?>
 <p>错误代码: </p>
 <table border="1">
+<thead>
   <tr>
     <th>code</th>
     <th>说明</th>
   </tr>
+</thead>
+<tbody>
   <?php foreach ($doc['errorCode'] as $code => $desc) { ?>
   <tr>
     <td><?=$code?></td>
@@ -179,16 +186,20 @@ class GenApiDoc
   </tr>
   <?php } ?>
 
+</tbody>
 </table>
 <?php } ?>
 <p>返回: <?=$doc['return']['desc']?> </p>
 <table border="1">
+<thead>
   <tr>
     <th>字段</th>
     <th>类型</th>
     <th>必需</th>
     <th>说明</th>
   </tr>
+</thead>
+<tbody>
   <?php foreach ($doc['return']['types'] as $one) { ?>
   <tr>
     <td><?=$one['name']?></td>
@@ -198,6 +209,7 @@ class GenApiDoc
   </tr>
   <?php } ?>
 
+</tbody>
 </table>
 
 <?php foreach ($doc['custom'] as $type => $typeValue) { ?>
@@ -206,12 +218,15 @@ class GenApiDoc
 <p><?=implode("\n", $typeValue['desc'])?></p>
 <?php } ?>
 <table border="1">
+<thead>
       <tr>
         <th>字段</th>
         <th>类型</th>
         <th>必需</th>
         <th>说明</th>
       </tr>
+</thead>
+<tbody>
       <?php foreach ($typeValue['types'] as $one) { ?>
       <tr>
         <td><?=$one['name']?></td>
@@ -221,6 +236,7 @@ class GenApiDoc
       </tr>
     <?php } ?>
 
+</tbody>
 </table>
 <?php } ?>
 <?php foreach ($doc['example'] as $key => $val) { ?>
