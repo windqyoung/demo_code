@@ -202,6 +202,9 @@ class GenApiDoc
 
 <?php foreach ($doc['custom'] as $type => $typeValue) { ?>
 <p id="<?=$this->typeId($type, $prefix)?>"><?=$type?> 说明: </p>
+<?php if (isset($typeValue['desc'])) { ?>
+<p><?=implode("\n", $typeValue['desc'])?></p>
+<?php } ?>
 <table border="1">
       <tr>
         <th>字段</th>
@@ -209,7 +212,7 @@ class GenApiDoc
         <th>必需</th>
         <th>说明</th>
       </tr>
-      <?php foreach ($typeValue as $one) { ?>
+      <?php foreach ($typeValue['types'] as $one) { ?>
       <tr>
         <td><?=$one['name']?></td>
         <td><?=$this->typeAnchor($one['type'], $prefix)?></td>
@@ -337,7 +340,10 @@ class GenApiDoc
                 }
                 else if ($last == 'custom') {
                     if (preg_match("/$paramPattern/", $subject, $mat)) {
-                        $doc['custom'][$lastData][$mat[2]] = $this->paramArray($mat);
+                        $doc['custom'][$lastData]['types'][$mat[2]] = $this->paramArray($mat);
+                    }
+                    else if (empty($doc['custom'][$lastData]['types'])) {
+                        $doc['custom'][$lastData]['desc'][] = $subject;
                     }
                 }
                 else if (isset($doc[$last])) {

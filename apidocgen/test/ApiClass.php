@@ -25,9 +25,12 @@ class ApiClass
      *
      * @return array|PDO
      * @data
+     * 这里面是说明data如何如何
+     * 说明第二句
      * string account  required 说明1
      * string vcode  vcode说明2
      * @arraykeytype arraykey  required 说明
+     * 第三句
      *
      * @arraykeytype
      * string key1 required 说明3
