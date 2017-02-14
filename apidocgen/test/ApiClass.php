@@ -14,16 +14,23 @@ class ApiClass
      * @method   GET
      * @uri /user/doc
      * @desc 测试生成文档
-     * 说明的内容
-     * 说明内容第二行
-     * @param string $id required 说明j GOod
-     * @param string $code 说明code
+     * 说明的内容 属于desc
+     * 说明内容第二行 属于desc
+     * @param string $id @inquery required 说明j GOod
+     * @param string $code @informData 说明code
      * @param string desc 说明desc
-     * @param @mystring descm 说明desc自定
+     * @param @mystring[] descm 说明desc自定
      * @errorCode 123 说明123
      *
-     *
+     * @tags Tag1 Tag2, Tag3
      * @return array|PDO
+     * helo,
+     * world
+     * @http 200
+     * @return myReturn
+     * good
+     * body
+     * @http 301
      * @data
      * 这里面是说明data如何如何
      * 说明第二句
@@ -64,9 +71,5 @@ class ApiClass
     public function docAction($id)
     {
 
-        /**
-         * @gendoc cmd?
-         * @desc helo
-         */
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
 
-require __DIR__ . '/../src/GenApiDoc.php';
+require __DIR__ . '/../src/ApiDocGen.php';
 
-$doc = new GenApiDoc();
+$doc = new ApiDocGen();
 
 echo '<!-- gendoc {{{ -->', "\n\n\n";
 

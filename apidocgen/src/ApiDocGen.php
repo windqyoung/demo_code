@@ -1,6 +1,6 @@
 <?php
 
-class GenApiDoc
+class ApiDocGen
 {
 
     private $returnDefault = [
@@ -128,16 +128,15 @@ class GenApiDoc
 
     public function genHtml($doc)
     {
-        $prefix = $doc['idPrefix'];
 
         ob_start();
 
         ?>
 <h1><?=isset($doc['desc'][0]) ? $doc['desc'][0] : ''?> [<?=$doc['method']?> <?=$doc['uri']?>]</h1>
 
-<?php if (count($doc['desc']) > 1) { ?>
+<?php if (($len = count($doc['desc'])) > 1) { ?>
 <p>说明: </p>
-<?php for ($i = 1, $len = count($doc['desc']); $i < $len; $i ++) { ?>
+<?php for ($i = 1; $i < $len; $i ++) { ?>
 <p><?=$doc['desc'][$i]?></p>
 <?php } ?>
 <?php } ?>
@@ -157,7 +156,7 @@ class GenApiDoc
   <?php foreach ($doc['param'] as $one) { ?>
   <tr>
     <td><?=$one['name']?></td>
-    <td><?=$this->typeAnchor($one['type'], $prefix) ?></td>
+    <td><?=$one['type']?></td>
     <td><?=$one['required'] ? '是' : '否'?></td>
     <td><?=$one['desc']?></td>
   </tr>
@@ -170,11 +169,11 @@ class GenApiDoc
 
 
 <?php if (! empty($doc['errorCode'])) { ?>
-<p>错误代码: </p>
+<p>错误码: </p>
 <table border="1">
 <thead>
   <tr>
-    <th>code</th>
+    <th>错误码</th>
     <th>说明</th>
   </tr>
 </thead>
@@ -189,7 +188,21 @@ class GenApiDoc
 </tbody>
 </table>
 <?php } ?>
-<p>返回: <?=$doc['return']['desc']?> </p>
+
+<?php foreach ($doc['return'] as $return) { ?>
+
+<p>返回: <?=isset($return['desc'][0]) ? $return['desc'][0] : ''?> </p>
+<?php if (! empty($return['http'])) { ?>
+<p>HTTP状态码: <?=$return['http']?></p>
+<?php } ?>
+<?php if (($len = count($return['desc'])) > 1) {
+    for ($i = 1; $i < $len; $i ++) {
+?>
+<p><?=$return['desc'][$i]?></p>
+<?php }} ?>
+
+
+<?php if (isset($return['fields'])) { ?>
 <table border="1">
 <thead>
   <tr>
@@ -200,10 +213,10 @@ class GenApiDoc
   </tr>
 </thead>
 <tbody>
-  <?php foreach ($doc['return']['types'] as $one) { ?>
+  <?php foreach ($return['fields'] as $one) { ?>
   <tr>
     <td><?=$one['name']?></td>
-    <td><?=$this->typeAnchor($one['type'], $prefix)?></td>
+    <td><?=$one['type']?></td>
     <td><?=$one['required'] ? '是' : '否'?></td>
     <td><?=$one['desc']?></td>
   </tr>
@@ -211,12 +224,18 @@ class GenApiDoc
 
 </tbody>
 </table>
-
-<?php foreach ($doc['custom'] as $type => $typeValue) { ?>
-<p id="<?=$this->typeId($type, $prefix)?>"><?=$type?> 说明: </p>
-<?php if (isset($typeValue['desc'])) { ?>
-<p><?=implode("\n", $typeValue['desc'])?></p>
 <?php } ?>
+
+<?php } ?>
+
+<?php foreach ($doc['custom'] as $typeValue) { ?>
+<p><?=$typeValue['name']?> 说明: </p>
+<?php if (isset($typeValue['desc'])) {
+    foreach ($typeValue['desc'] as $desc) {
+    ?>
+<p><?=$desc?></p>
+<?php }} ?>
+
 <table border="1">
 <thead>
       <tr>
@@ -227,10 +246,10 @@ class GenApiDoc
       </tr>
 </thead>
 <tbody>
-      <?php foreach ($typeValue['types'] as $one) { ?>
+    <?php foreach ($typeValue['fields'] as $one) { ?>
       <tr>
         <td><?=$one['name']?></td>
-        <td><?=$this->typeAnchor($one['type'], $prefix)?></td>
+        <td><?=$one['type']?></td>
         <td><?=$one['required'] ? '是' : '否'?></td>
         <td><?=$one['desc']?></td>
       </tr>
@@ -286,24 +305,24 @@ class GenApiDoc
             return;
         }
 
-        $paramPattern = '(\S+)\s+\$?(\S+)\s+(required)?\s*(.*)';
+        $paramPattern = '(?<type>\S+)\s+\$?(?<name>\S+)\s+(@in(?<in>query|header|path|formData|body))?\s*(?<required>required)?\s*(?<desc>.*)';
 
         $doc = [
             'method' => 'GET',
             'uri' => '',
             'desc' => [],
+            'tags' => [],
             'param' => [],
             'errorCode' => [],
             'example' => [],
-            'return' => ['desc' => null, 'types' => $this->getReturnDefault()],
+            'return' => [['desc' => null, 'http' => 'default', 'fill' => true, 'fields' => $this->getReturnDefault()]],
             'custom' => [],
-            'idPrefix' => '',
         ];
         $last = null;
         $lastData = null;
         $lines = explode("\n", $cmt);
         foreach ($lines as $one) {
-            $subject = preg_replace('/^\s*\*\\/?\s?/', '', $one);
+            $subject = trim($one, '/* ');
 
             if (empty($subject)) {
                 continue;
@@ -314,41 +333,49 @@ class GenApiDoc
             else if (strpos($subject, '@end') !== false) {
                 break;
             }
-            else if (preg_match('/@idPrefix\s+(\S+)/', $subject, $mat)) {
-                $doc['idPrefix'] = $mat[1];
-            }
-            else if (preg_match('/@method\s+(.*)/', $subject, $mat)) {
+            else if (preg_match('/@method\s+(.+)/', $subject, $mat)) {
                 $doc['method'] = $mat[1];
             }
-            else if (preg_match('/@uri\s+(.*)/', $subject, $mat)) {
+            else if (preg_match('/@uri\s+(.+)/', $subject, $mat)) {
                 $doc['uri'] = $mat[1];
             }
-            else if (preg_match('/@desc\s+(.*)/', $subject, $mat)) {
+            else if (preg_match('/@desc\s*(.*)/', $subject, $mat)) {
                 $doc['desc'][] = $mat[1];
                 $last = 'desc';
+            }
+            else if (preg_match('/@tags?\s+(.*)/', $subject, $mat)) {
+                $doc['tags'] = array_merge($doc['tags'], preg_split('/[,\s]+/', $mat[1]));
             }
             else if (preg_match("/@param\s+$paramPattern/", $subject, $mat)) {
                 $doc['param'][$mat[2]] = $this->paramArray($mat);
             }
-            else if (preg_match('/@errorCode\s+(\S+)\s+(\S+)/', $subject, $mat)) {
+            else if (preg_match('/@errorCode\s+(\S+)\s+(.+)/', $subject, $mat)) {
                 $doc['errorCode'][$mat[1]] = $mat[2];
             }
-            else if (preg_match('/@example\s*(.*$)/', $subject, $mat)) {
+            else if (preg_match('/@example\s*(.*)/', $subject, $mat)) {
                 $last = 'example';
                 $lastData = $mat[1] ?: count($doc['example']);
             }
             else if (preg_match('/@return\s*(.*)/', $subject, $mat)) {
-                $doc['return']['desc'] = $mat[1];
                 $last = 'return';
+                $lastData = $this->lastReturnKey($doc['return']);
+                $doc['return'][$lastData]['desc'][] = $mat[1];
+            }
+            else if ($last == 'return' && preg_match('/@http\s+(\S+)/', $subject, $mat)) {
+                $doc['return'][$lastData]['http'] = $mat[1];
             }
             else if (preg_match('/@(\S+)\s*$/', $subject, $mat)) {
                 $last = 'custom';
                 $lastData = $mat[1];
+                $doc['custom'][$lastData]['name'] = $lastData;
             }
             else {
                 if ($last == 'return') {
                     if (preg_match("/$paramPattern/", $subject, $mat)) {
-                        $doc['return']['types'][$mat[2]] = $this->paramArray($mat);
+                        $doc['return'][$lastData]['fields'][$mat[2]] = $this->paramArray($mat);
+                    }
+                    else {
+                        $doc['return'][$lastData]['desc'][] = $subject;
                     }
                 }
                 else if ($last == 'example') {
@@ -356,9 +383,9 @@ class GenApiDoc
                 }
                 else if ($last == 'custom') {
                     if (preg_match("/$paramPattern/", $subject, $mat)) {
-                        $doc['custom'][$lastData]['types'][$mat[2]] = $this->paramArray($mat);
+                        $doc['custom'][$lastData]['fields'][$mat[2]] = $this->paramArray($mat);
                     }
-                    else if (empty($doc['custom'][$lastData]['types'])) {
+                    else if (empty($doc['custom'][$lastData]['fields'])) {
                         $doc['custom'][$lastData]['desc'][] = $subject;
                     }
                 }
@@ -368,20 +395,35 @@ class GenApiDoc
             }
         }
 
-        if (empty($doc['idPrefix'])) {
-            $doc['idPrefix'] = str_replace('/', '_', $doc['uri']) . '_v_';
-        }
-
         return $doc;
     }
+
+    private function lastReturnKey(& $return)
+    {
+        $count = count($return);
+
+        if ($count === 0) {
+            return $count;
+        }
+
+        $last = $return[$count - 1];
+
+        if (! empty($last['fill'])) {
+            unset($return[$count - 1]['fill']);
+            return $count - 1;
+        }
+        return $count;
+    }
+
 
     private function paramArray($mat)
     {
         return [
-            'type' => $mat[1],
-            'name' => $mat[2],
-            'required' => $mat[3] == 'required',
-            'desc' => $mat[4],
+            'type' => $mat['type'],
+            'name' => $mat['name'],
+            'required' => $mat['required'] == 'required',
+            'desc' => $mat['desc'],
+            'in' => $mat['in'],
         ];
     }
 
