@@ -23,6 +23,8 @@ class ApiClass
      * @errorCode 123 说明123
      *
      * @tags Tag1 Tag2, Tag3
+     * @tag
+     * @tags
      * @return array|PDO
      * helo,
      * world

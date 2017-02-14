@@ -236,6 +236,7 @@ class ApiDocGen
 <p><?=$desc?></p>
 <?php }} ?>
 
+<?php if (isset($typeValue['fields'])) { ?>
 <table border="1">
 <thead>
       <tr>
@@ -257,6 +258,8 @@ class ApiDocGen
 
 </tbody>
 </table>
+<?php } ?>
+
 <?php } ?>
 <?php foreach ($doc['example'] as $key => $val) { ?>
 <p>示例</p>
@@ -343,7 +346,7 @@ class ApiDocGen
                 $doc['desc'][] = $mat[1];
                 $last = 'desc';
             }
-            else if (preg_match('/@tags?\s+(.*)/', $subject, $mat)) {
+            else if (preg_match('/@tags?\s*(.*)/', $subject, $mat)) {
                 $doc['tags'] = array_merge($doc['tags'], preg_split('/[,\s]+/', $mat[1]));
             }
             else if (preg_match("/@param\s+$paramPattern/", $subject, $mat)) {
