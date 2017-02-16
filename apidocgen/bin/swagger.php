@@ -24,6 +24,13 @@ if (! empty($_GET['d'])) {
     $parsed = array_merge($parsed, $doc->parseDir($dir));
 }
 
+if (isset($_GET['tags'])) {
+    $tags = (array) $_GET['tags'];
+    $parsed = array_filter($parsed, function ($one) use ($tags) {
+        return array_intersect($tags, $one['tags']);
+    });
+}
+
 $sw = $doc->genDocsSwagger($parsed, $host, $basePath);
 
 echo json_encode($sw);
