@@ -697,6 +697,13 @@ class ApiDocGen
             }
         }
 
+        // 把null值改为""
+        array_walk_recursive($sw, function (& $v) {
+            if ($v === null) {
+                $v = '';
+            }
+        });
+
         return $sw;
     }
 
