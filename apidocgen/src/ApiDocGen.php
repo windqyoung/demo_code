@@ -554,7 +554,7 @@ class ApiDocGen
         }, $rt['type']);
 
         return $doc['prefix']
-            . '_' . strtoupper($doc['method'])
+            . '_' . strtolower($doc['method'])
             . '_return_'
             . $rt['http'] . '_'
             . $type;
