@@ -1,14 +1,20 @@
 <?php
 
+namespace Wqy;
+
+use ReflectionClass;
 
 class ClassIdeHelperGenerator
 {
     private $classes;
 
+    private $title;
 
-    public function __construct($classes)
+
+    public function __construct($classes, $title = 'by Ide Helper Generator')
     {
         $this->classes = $classes;
+        $this->title = $title;
     }
 
     private function prefixSpaces($level)
@@ -258,7 +264,7 @@ class ClassIdeHelperGenerator
                 }
             } else if ($p->isOptional()) {
                 $s .= ' = null';
-			}
+            }
 
             $args[] = $s;
         }
@@ -292,9 +298,7 @@ class ClassIdeHelperGenerator
 
     public function genSource()
     {
-		$version = Phalcon\Version::get();
-
-        $source = "<?php \n\n/**\n * Phalcon version $version\n */\nnamespace { exit('this is a ide helper file, do not include.'); }\n\n";
+        $source = "<?php \n\n/**\n * {$this->title}\n */\nnamespace { exit('this is a ide helper file, do not include.'); }\n\n";
 
         foreach ($this->classes as $cls)
         {
@@ -310,15 +314,15 @@ class ClassIdeHelperGenerator
     }
 
 
-    public static function savePhalconTo($filename = '_phalcon_ide_helper.php')
+    public static function handle($classPrefix, $title, $filename)
     {
-        $classes = array_filter(array_merge(get_declared_classes(), get_declared_interfaces()), function ($c) {
-            return strpos($c, 'Phalcon\\') === 0;
+        $classes = array_filter(array_merge(get_declared_classes(), get_declared_interfaces()), function ($c) use ($classPrefix) {
+            return strpos($c, $classPrefix) === 0;
         });
 
         sort($classes);
 
-        $obj = new self($classes);
+        $obj = new self($classes, $title);
 
         $obj->save($filename);
     }
