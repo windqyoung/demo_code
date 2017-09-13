@@ -190,3 +190,13 @@ class ProcessMakerCaseDoc
         return $steps;
     }
 }
+
+
+
+function fputcsv($handle, $fields)
+{
+    $fields = array_map(function ($one) {
+        return iconv('utf-8', 'gbk', $one);
+    }, $fields);
+    \fputcsv($handle, $fields);
+}
