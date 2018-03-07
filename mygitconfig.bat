@@ -20,6 +20,7 @@ git config --global --add alias.bi "bisect"
 git config --global --add alias.dfw "diff -w"
 
 git config --global tag.sort version:refname
-git config --global --add alias.tv  'tag --sort=version:refname'
-git config --global --add alias.tv- 'tag --sort=-version:refname'
+git config --global --add alias.tv  "tag --sort=version:refname"
+git config --global --add alias.tv- "tag --sort=-version:refname"
+
 
