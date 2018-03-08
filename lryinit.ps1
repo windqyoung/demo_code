@@ -11,14 +11,17 @@ function replace($file, $map)
     }
 
     set-content $file $content
-
 }
 
-function replaceFiles()
+function replace_env($db)
 {
+    if (! $db) {
+        $db = 'lry'
+    }
+
     $map = @{
         'APP_URL=http://localhost' = 'APP_URL=http://lry.my';
-        'DB_DATABASE=homestead' = 'DB_DATABASE=lry';
+        'DB_DATABASE=homestead' = 'DB_DATABASE=' + $db;
         'DB_USERNAME=homestead' = 'DB_USERNAME=root';
         'DB_PASSWORD=secret' = 'DB_PASSWORD=1234';
         'CACHE_DRIVER=file' = 'CACHE_DRIVER=database';
@@ -27,14 +30,20 @@ function replaceFiles()
     }
     replace .env $map
     Write-Host .env replaced
+}
 
+function replace_config()
+{
     $map = @{
         "'timezone' => 'UTC'" = "'timezone' => 'Asia/Shanghai'";
         "'locale' => 'en'" = "'locale' => 'zh'";
     }
     replace config/app.php $map
     Write-Host config/app.php replaced
+}
 
+function add_gitignore()
+{
     add-content .gitignore @'
 /.settings/
 /.buildpath
@@ -43,7 +52,10 @@ TestController.php
 /storage/debugbar/
 '@
     Write-Host .gitignore appended
+}
 
+function add_routes()
+{
     add-content routes\web.php @'
 
 Route::get('/test/foo', [
@@ -58,7 +70,10 @@ Route::get('/test/bar', [
 
 '@
     Write-Host routes\web.php appended
+}
 
+function create_test()
+{
     $testctrl = 'app\Http\Controllers\TestController.php'
     new-item -path $testctrl -itemtype file
     set-content $testctrl @'
@@ -79,7 +94,7 @@ class TestController extends Controller
 
     public function bar(Request $req)
     {
-        return __METHOD__;
+        return view('test.bar');
     }
 
 }
@@ -87,14 +102,38 @@ class TestController extends Controller
 
 '@
     Write-Host $testctrl created and set content
+
+    $viewDir = 'resources/views/test'
+    if (!(test-path $viewDir)) {
+        mkdir $viewDir
+        Write-Host $viewDir created
+    }
+    $barFile = join-path $viewDir 'bar.blade.php'
+    Set-Content $barFile @'
+<h1>Helo</h1>
+'@
+
+    Write-Host $barFile created
+
+}
+
+$db = read-host "Êý¾Ý¿âÃû(lry)"
+if (! $db) {
+    $db = 'lry'
 }
 
 
-composer require barryvdh/laravel-ide-helper barryvdh/laravel-debugbar doctrine/dbal -vvv
+replace_env $db
+replace_config
+add_gitignore
+add_routes
+create_test
 
-replaceFiles
 
-echo "create database lry;" | mysql
+composer require barryvdh/laravel-ide-helper barryvdh/laravel-debugbar doctrine/dbal
+
+
+Write-Output "create database $db ;" | mysql
 
 php artisan ide-helper:model -WR
 php artisan ide-helper:generate
