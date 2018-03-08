@@ -16,11 +16,14 @@ function replace($file, $map)
 
 function replaceFiles()
 {
-
     $map = @{
+        'APP_URL=http://localhost' = 'APP_URL=http://lry.my';
         'DB_DATABASE=homestead' = 'DB_DATABASE=lry';
         'DB_USERNAME=homestead' = 'DB_USERNAME=root';
         'DB_PASSWORD=secret' = 'DB_PASSWORD=1234';
+        'CACHE_DRIVER=file' = 'CACHE_DRIVER=database';
+        'SESSION_DRIVER=file' = 'SESSION_DRIVER=database';
+        'QUEUE_DRIVER=sync' = 'QUEUE_DRIVER=database';
     }
     replace .env $map
     Write-Host .env replaced
@@ -28,12 +31,6 @@ function replaceFiles()
     $map = @{
         "'timezone' => 'UTC'" = "'timezone' => 'Asia/Shanghai'";
         "'locale' => 'en'" = "'locale' => 'zh'";
-        'App\Providers\RouteServiceProvider::class,' = @'
-App\Providers\RouteServiceProvider::class,
-
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-'@
     }
     replace config/app.php $map
     Write-Host config/app.php replaced
@@ -63,7 +60,7 @@ Route::get('/test/bar', [
     Write-Host routes\web.php appended
 
     $testctrl = 'app\Http\Controllers\TestController.php'
-    $nulll = new-item -path $testctrl -itemtype file
+    new-item -path $testctrl -itemtype file
     set-content $testctrl @'
 <?php
 
@@ -97,5 +94,15 @@ composer require barryvdh/laravel-ide-helper barryvdh/laravel-debugbar doctrine/
 
 replaceFiles
 
+echo "create database lry;" | mysql
+
 php artisan ide-helper:model -WR
 php artisan ide-helper:generate
+
+php artisan cache:table
+php artisan notifications:table
+php artisan queue:failed-table
+php artisan queue:table
+php artisan session:table
+
+php artisan migrate
