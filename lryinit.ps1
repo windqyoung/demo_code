@@ -38,6 +38,18 @@ function replace_config()
         "'timezone' => 'UTC'" = "'timezone' => 'Asia/Shanghai'";
         "'locale' => 'en'" = "'locale' => 'zh'";
     }
+
+    $version = php artisan --version
+    if ($version -lt "Laravel Framework 5.5") {
+        $map['App\Providers\RouteServiceProvider::class,'] = @'
+
+        App\Providers\RouteServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
+'@
+    }
+
     replace config/app.php $map
     Write-Host config/app.php replaced
 }
@@ -129,14 +141,12 @@ add_gitignore
 add_routes
 create_test
 
+php -v
 
 composer require barryvdh/laravel-ide-helper barryvdh/laravel-debugbar doctrine/dbal
 
 
 Write-Output "create database $db ;" | mysql
-
-php artisan ide-helper:model -WR
-php artisan ide-helper:generate
 
 php artisan cache:table
 php artisan notifications:table
@@ -145,3 +155,6 @@ php artisan queue:table
 php artisan session:table
 
 php artisan migrate
+
+php artisan ide-helper:model -WR
+php artisan ide-helper:generate
