@@ -60,8 +60,9 @@ function add_gitignore()
 /.settings/
 /.buildpath
 /.project
-TestController.php
+/app/Http/Controllers/Test/*
 /storage/debugbar/
+/resources/views/test/*
 '@
     Write-Host .gitignore appended
 }
@@ -72,12 +73,12 @@ function add_routes()
 
 Route::get('/test/foo', [
     'as' => 'test.foo',
-    'uses' => 'TestController@foo',
+    'uses' => 'Test\TestController@foo',
 ]);
 
 Route::get('/test/bar', [
     'as' => 'test.bar',
-    'uses' => 'TestController@bar',
+    'uses' => 'Test\TestController@bar',
 ]);
 
 '@
@@ -86,12 +87,18 @@ Route::get('/test/bar', [
 
 function create_test()
 {
-    $testctrl = 'app\Http\Controllers\TestController.php'
+    $testdir = 'app\Http\Controllers\Test'
+
+    if (! (test-path $testdir)) {
+         New-Item -Type Directory $testdir
+    }
+
+    $testctrl = join-path $testdir 'TestController.php'
     new-item -path $testctrl -itemtype file
     set-content $testctrl @'
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Test;
 
 use Illuminate\Http\Request;
 
@@ -134,6 +141,20 @@ if (! $db) {
     $db = 'lry'
 }
 
+git init
+git add .
+git commit -m "before init"
+
+if (test-path vendor) {
+    pushd
+
+    cd vendor
+    git init
+    git add .
+    git ci -m "before init vendor"
+
+    popd
+}
 
 replace_env $db
 replace_config
