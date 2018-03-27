@@ -1,4 +1,4 @@
-#Thu Mar 08 13:52:02 CST 2018
+#Tue Mar 27 15:53:47 CST 2018
 \!/=
 /configuration/com.zend.php.ui/isFirstStartup=false
 /configuration/com.zend.php.ui/isFirstStartupSince10.6=false
@@ -9,6 +9,8 @@
 /configuration/org.eclipse.ui.ide/RECENT_WORKSPACES_PROTOCOL=3
 /configuration/org.eclipse.ui.ide/SHOW_RECENT_WORKSPACES=false
 /configuration/org.eclipse.ui.ide/SHOW_WORKSPACE_SELECTION_DIALOG=false
+/instance/com.zend.php.ide.ui/Bind\ namespace\ and\ location=1
+/instance/com.zend.php.ide.ui/Inherited\ abstract\ methods=1
 /instance/com.zend.php.ui/showAllVersions=true
 /instance/de.loskutov.anyedit.AnyEditTools/disallowedInPath=\ \r\n"'*?><|\=(){};&$,%@
 /instance/de.loskutov.anyedit.AnyEditTools/org.eclipse.jdt.ui.editor.tab.width=4
@@ -16,7 +18,6 @@
 /instance/de.loskutov.anyedit.AnyEditTools/saveAndConvert=true
 /instance/de.loskutov.anyedit.AnyEditTools/saveAndFixLineDelimiters=true
 /instance/org.eclipse.a.wst.html.webresources.core/search-in-all-css-files-if-no-links=false
-/instance/org.eclipse.ant.launching/timeout=20000
 /instance/org.eclipse.ant.ui/formatter_tab_char=false
 /instance/org.eclipse.ant.ui/org.eclipse.ant.ui.customtemplates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
 /instance/org.eclipse.ant.ui/problem_classpath=warning
@@ -44,7 +45,7 @@
 /instance/org.eclipse.debug.ui/StringVariablePreferencePage=159,132,132,105,
 /instance/org.eclipse.debug.ui/org.eclipse.debug.ui.PREF_FILTER_TYPE_LIST=org.eclipse.ant.AntLaunchConfigurationType,org.eclipse.jdt.launching.javaApplet,org.eclipse.jdt.launching.localJavaApplication,org.eclipse.jdt.junit.launchconfig,org.eclipse.jdt.launching.remoteJavaApplication,
 /instance/org.eclipse.debug.ui/org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
-/instance/org.eclipse.debug.ui/preferredTargets=default\:default|default,org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId\:default|default,org.eclipse.php.debug.ui.PHPtoggleTargetFactory\:default|
+/instance/org.eclipse.debug.ui/preferredTargets=default\:default|default,org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId\:default|org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId\:org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId|default,org.eclipse.php.debug.ui.PHPtoggleTargetFactory\:default|
 /instance/org.eclipse.dltk.core/org.eclipse.dltk.core.userLibrary.org.eclipse.php.core.PHPNature\#IBM\ i\ Toolkit=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary __attribute__builtin\="true" __attribute__libraryVersion\="1.5.0" systemlibrary\="false" version\="1">\n\t<archive path\="org.eclipse.dltk.core.environment.localEnvironment/D\:/Program Files/Zend/Zend Studio 13.6.0/plugins/com.zend.php.ibmitoolkit_13.6.0.v20170406-0246/resources/ToolkitApi/"/>\n</userlibrary>\n
 /instance/org.eclipse.dltk.core/org.eclipse.dltk.core.userLibrary.org.eclipse.php.core.PHPNature\#PHPUnit=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary __attribute__builtin\="true" __attribute__libraryVersion\="3.7.38" systemlibrary\="false" version\="1">\n\t<archive path\="org.eclipse.dltk.core.environment.localEnvironment/D\:/Program Files/Zend/Zend Studio 13.6.0/plugins/com.zend.php.phpunit_13.6.0.v20170406-0246/resources/vendor/phpunit"/>\n</userlibrary>\n
 /instance/org.eclipse.dltk.core/org.eclipse.dltk.core.userLibrary.org.eclipse.php.core.PHPNature\#PHPUnit\ 4=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary __attribute__builtin\="true" __attribute__libraryVersion\="4.5.0" systemlibrary\="false" version\="1">\n\t<archive path\="org.eclipse.dltk.core.environment.localEnvironment/D\:/Program Files/Zend/Zend Studio 13.6.0/plugins/com.zend.php.phpunit_13.6.0.v20170406-0246/resources/phpunit4x/phpunit/"/>\n</userlibrary>\n
@@ -62,8 +63,8 @@
 /instance/org.eclipse.e4.ui.css.swt.theme/themeid=org.eclipse.e4.ui.css.theme.e4_classic6.0,6.1,6.2,6.3
 /instance/org.eclipse.e4.ui.workbench.renderers.swt/enableMRU=true
 /instance/org.eclipse.e4.ui.workbench.renderers.swt/themeEnabled=true
-/instance/org.eclipse.egit.core/GitRepositoriesView.GitDirectories=E\:\\projects\\lry.my\\.git;E\:\\projects\\ucfgroup\\weipai\\.git;
-/instance/org.eclipse.egit.core/GitRepositoriesView.GitDirectories.relative=E\:\\projects\\lry.my\\.git;E\:\\projects\\ucfgroup\\weipai\\.git;
+/instance/org.eclipse.egit.core/GitRepositoriesView.GitDirectories=E\:\\projects\\fd.my\\.git;E\:\\projects\\lry54.my\\.git;E\:\\projects\\ucfgroup\\vera-cms\\.git;E\:\\projects\\ucfgroup\\vera-creditmanage\\.git;E\:\\projects\\lry.my\\.git;E\:\\projects\\bitc\\.git;E\:\\projects\\ucfgroup\\weipai\\.git;
+/instance/org.eclipse.egit.core/GitRepositoriesView.GitDirectories.relative=E\:\\projects\\fd.my\\.git;E\:\\projects\\lry54.my\\.git;E\:\\projects\\ucfgroup\\vera-cms\\.git;E\:\\projects\\ucfgroup\\vera-creditmanage\\.git;E\:\\projects\\lry.my\\.git;E\:\\projects\\bitc\\.git;E\:\\projects\\ucfgroup\\weipai\\.git;
 /instance/org.eclipse.egit.core/core_preferredMergeStrategy=jgit-default-mergeStrategy
 /instance/org.eclipse.help.base/always_external_browser=false
 /instance/org.eclipse.help.base/dialog_infopop=false
@@ -386,6 +387,7 @@
 /instance/org.eclipse.php.formatter.core/org.eclipse.php.formatter.core.formatter.use_on_off_tags=false
 /instance/org.eclipse.php.server.core/defaultPHPServer=s.com
 /instance/org.eclipse.php.server.core/phpServers=<server><apache2Location>E\:\\devapps\\xampp\\win32-php5.6\\apache\\conf</apache2Location><port>80</port><debuggerId>org.eclipse.php.debug.core.xdebugDebugger</debuggerId><document_root>E\:/devapps/xampp/win32-php5.6/htdocs</document_root><serverType>org.zend.php.server.ui.types.LocalApacheType</serverType><name>s.com</name><base_url>http\://localhost</base_url><id>php-server-c6893282-fe36-4476-a66b-9bd6e99ff818</id></server>
+/instance/org.eclipse.php.ui/SortingAction.isChecked=true
 /instance/org.eclipse.php.ui/autoAddPhpCloseTags=false
 /instance/org.eclipse.php.ui/autoAddPhpForPhpStartTags=false
 /instance/org.eclipse.php.ui/cleanup.format.on.save=false
@@ -405,10 +407,12 @@
 /instance/org.eclipse.rse.core/org.eclipse.rse.systemtype.local.systemType.defaultUserId=windq
 /instance/org.eclipse.rse.core/useridperkey=DESKTOP-H609M4L.Local\=windq;
 /instance/org.eclipse.rse.ui/org.eclipse.rse.preferences.order.connections=DESKTOP-H609M4L.Local
+/instance/org.eclipse.search/org.eclipse.search.defaultPerspective=org.eclipse.search.defaultPerspective.none
 /instance/org.eclipse.team.core/file_types=css\n1\njetinc\n1\nfactorypath\n1\nmod\n1\nbmp\n2\nproject\n1\ngenmodel\n1\nmxsd\n1\ntif\n2\nexe\n2\njava\n1\nico\n2\nxmi\n1\nxml\n1\noptions\n1\nMF\n1\nhtml\n1\njar\n2\nshtml\n1\nzip\n2\npng\n2\nindex\n1\nhistory\n1\napi_filters\n1\njavajet\n1\necore2xml\n1\nmdl\n1\ndoc\n2\necore\n1\nhtpl\n1\nshtm\n1\npropertiesjet\n1\ntiff\n2\ngif\n2\nxsd\n1\njs\n1\nnst\n1\nemof\n1\nxsl\n1\nwsdl\n1\ndtd\n1\ncat\n1\nwml\n1\njpeg\n2\nxmljet\n1\nso\n2\nclass\n2\nhtm\n1\njpg\n2\nproduct\n1\nclasspath\n1\ndll\n2\nini\n1\nent\n1\nlaunch\n1\nexsd\n1\necore2ecore\n1\nprefs\n1\nxhtml\n1\ntxt\n1\njpage\n1\npdf\n2\nppt\n2\nxslt\n1\njardesc\n1\nproperties\n1\nxls\n2\ndadx\n1\n
 /instance/org.eclipse.team.ui/org.eclipse.team.ui.first_time=false
 /instance/org.eclipse.ui.browser/browser-choice=0
 /instance/org.eclipse.ui.browser/browsers=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<web-browsers current\="0">\r\n<system/>\r\n<external location\="C\:\\Program Files\\Mozilla Firefox\\firefox.exe" name\="Firefox"/>\r\n<external location\="C\:\\Program Files\\Internet Explorer\\iexplore.exe" name\="Internet Explorer"/>\r\n</web-browsers>
+/instance/org.eclipse.ui.browser/internalWebBrowserHistory=https\://unpkg.com/babel-standalone@6.15.0/babel.js|*|https\://unpkg.com/babel-standalone@6.15.0/babel.min.js|*|https\://unpkg.com/react-dom@16/umd/react-dom.development.js|*|https\://unpkg.com/react@16/umd/react.development.js|*|
 /instance/org.eclipse.ui.editors/Accessibility.UseSaturatedColors=true
 /instance/org.eclipse.ui.editors/PHPReadOccurrenceIndicationColor=255,0,0
 /instance/org.eclipse.ui.editors/overviewRuler_migration=migrated_3.1
@@ -416,7 +420,7 @@
 /instance/org.eclipse.ui.editors/quickdiff.characterMode=true
 /instance/org.eclipse.ui.editors/spacesForTabs=true
 /instance/org.eclipse.ui.ide/EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
-/instance/org.eclipse.ui.ide/IDE_ENCODINGS_PREFERENCE=GBK
+/instance/org.eclipse.ui.ide/IDE_ENCODINGS_PREFERENCE=GBK'
 /instance/org.eclipse.ui.ide/IMPORT_FILES_AND_FOLDERS_MODE=prompt
 /instance/org.eclipse.ui.ide/IMPORT_FILES_AND_FOLDERS_VIRTUAL_FOLDER_MODE=prompt
 /instance/org.eclipse.ui.ide/PROBLEMS_FILTERS_MIGRATE=true
@@ -433,6 +437,15 @@
 /instance/org.eclipse.ui.trace/tracingMaxFileCount=10
 /instance/org.eclipse.ui.trace/tracingMaxFileSize=1000
 /instance/org.eclipse.ui.trace/tracingOutputStandard=false
+/instance/org.eclipse.ui.views.log/activate=true
+/instance/org.eclipse.ui.views.log/column2=300
+/instance/org.eclipse.ui.views.log/column3=150
+/instance/org.eclipse.ui.views.log/column4=150
+/instance/org.eclipse.ui.views.log/groupBy=0
+/instance/org.eclipse.ui.views.log/maxLogTailSize=1
+/instance/org.eclipse.ui.views.log/orderType=2
+/instance/org.eclipse.ui.views.log/orderValue=-1
+/instance/org.eclipse.ui.views.log/show_filter_text=true
 /instance/org.eclipse.ui.workbench//org.eclipse.ui.commands/state/org.eclipse.ui.navigator.resources.nested.changeProjectPresentation/org.eclipse.ui.commands.radioState=false
 /instance/org.eclipse.ui.workbench/ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc
 /instance/org.eclipse.ui.workbench/ColorsAndFontsPreferencePage.selectedElement=CQUALIFIER_COLOR
@@ -849,10 +862,10 @@
 /instance/org.eclipse.wst.xml.ui/xml_content_assist_own_page_sort_order=org.eclipse.wst.xml.ui.proposalCategory.xmlTemplates\u0000org.eclipse.wst.xml.ui.proposalCategory.xmlTags\u0000
 /instance/org.zend.php.common/isFirstStartup=true
 /instance/org.zend.php.framework/zend_framework_version=Zend Framework 2
+@com.zend.php.ide.ui=13.6.0.v20170406-0246
 @com.zend.php.ui=13.6.0.v20170406-0246
 @de.loskutov.anyedit.AnyEditTools=2.7.0.201705171641
 @org.eclipse.a.wst.html.webresources.core=1.2.0.201608031038
-@org.eclipse.ant.launching=1.1.201.v20161115-1135
 @org.eclipse.ant.ui=3.6.201.v20161115-1135
 @org.eclipse.core.net=1.3.0.v20160418-1534
 @org.eclipse.core.resources=3.11.1.v20161107-2032
@@ -885,6 +898,7 @@
 @org.eclipse.remote.core=2.1.0.201612062149
 @org.eclipse.rse.core=3.3.100.201603151753
 @org.eclipse.rse.ui=3.3.300.201610252046
+@org.eclipse.search=3.11.1.v20161113-1700
 @org.eclipse.team.core=3.8.0.v20160418-1534
 @org.eclipse.team.ui=3.8.0.v20160518-1906
 @org.eclipse.ui.browser=3.5.2.v20161114-0210
@@ -892,6 +906,7 @@
 @org.eclipse.ui.ide=3.12.3.v20170119-0935
 @org.eclipse.ui.monitoring=1.1.2.v20170203-1115
 @org.eclipse.ui.trace=1.0.400.v20160509-1055
+@org.eclipse.ui.views.log=1.2.1.v20160829-0826
 @org.eclipse.ui.workbench=3.108.3.v20170216-1539
 @org.eclipse.wst.css.core=1.1.900.v201603171933
 @org.eclipse.wst.css.ui=1.0.1001.v201608060346
