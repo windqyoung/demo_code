@@ -143,7 +143,7 @@ if (! $db) {
 
 git init
 git add .
-git commit -m "before init"
+git commit -m "repo init"
 
 if (test-path vendor) {
     pushd
@@ -151,7 +151,7 @@ if (test-path vendor) {
     cd vendor
     git init
     git add .
-    git ci -m "before init vendor"
+    git ci -m "vendor repo init"
 
     popd
 }
@@ -179,3 +179,17 @@ php artisan migrate
 
 php artisan ide-helper:model -WR
 php artisan ide-helper:generate
+
+
+git add .
+git commit -m "repo commit first"
+
+if (test-path vendor) {
+    pushd
+
+    cd vendor
+    git add .
+    git ci -m "vendor repo commit first"
+
+    popd
+}
