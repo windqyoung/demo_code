@@ -13,19 +13,28 @@ function replace($file, $map)
     set-content $file $content
 }
 
-function replace_env($db)
+function replace_env()
 {
+    $db = read-host "数据库名(lry)"
     if (! $db) {
         $db = 'lry'
+    }
+    $user = read-host "数据库用户名(root)"
+    if (!$user) {
+        $user = 'root'
+    }
+    $password = read-host "数据库密码(1234)"
+    if (!$password) {
+        $password = '1234'
     }
 
     $map = @{
         'APP_URL=http://localhost' = 'APP_URL=http://lry.my';
         'DB_DATABASE=homestead' = 'DB_DATABASE=' + $db;
-        'DB_USERNAME=homestead' = 'DB_USERNAME=root';
-        'DB_PASSWORD=secret' = 'DB_PASSWORD=1234';
-        'CACHE_DRIVER=file' = 'CACHE_DRIVER=database';
-        'SESSION_DRIVER=file' = 'SESSION_DRIVER=database';
+        'DB_USERNAME=homestead' = 'DB_USERNAME=' + $user;
+        'DB_PASSWORD=secret' = 'DB_PASSWORD=' + $password;
+        'CACHE_DRIVER=file' = 'CACHE_DRIVER=file';
+        'SESSION_DRIVER=file' = 'SESSION_DRIVER=file';
         'QUEUE_DRIVER=sync' = 'QUEUE_DRIVER=database';
     }
     replace .env $map
@@ -69,20 +78,36 @@ function add_gitignore()
 
 function add_routes()
 {
-    add-content routes\web.php @'
+    set-content routes\test.php @'
+<?php
 
-Route::get('/test/foo', [
-    'as' => 'test.foo',
-    'uses' => 'Test\TestController@foo',
-]);
+use App\Http\Controllers\Test\TestController;
 
-Route::get('/test/bar', [
-    'as' => 'test.bar',
-    'uses' => 'Test\TestController@bar',
-]);
+
+if (class_exists(TestController::class)) {
+    if (method_exists(TestController::class, 'foo')) {
+        Route::get('/test/foo', [
+            'as' => 'test.foo',
+            'uses' => 'Test\TestController@foo',
+        ]);
+    }
+
+    if (method_exists(TestController::class, 'bar')) {
+        Route::get('/test/bar', [
+            'as' => 'test.bar',
+            'uses' => 'Test\TestController@bar',
+        ]);
+    }
+}
+
 
 '@
-    Write-Host routes\web.php appended
+    Write-Host routes\test.php created
+
+    add-content routes\web.php @'
+include __DIR__ . '/test.php';
+
+'@
 }
 
 function create_test()
@@ -136,27 +161,13 @@ class TestController extends Controller
 
 }
 
-$db = read-host "数据库名(lry)"
-if (! $db) {
-    $db = 'lry'
-}
 
 git init
 git add .
 git commit -m "repo init"
 
-if (test-path vendor) {
-    pushd
 
-    cd vendor
-    git init
-    git add .
-    git ci -m "vendor repo init"
-
-    popd
-}
-
-replace_env $db
+replace_env
 replace_config
 add_gitignore
 add_routes
@@ -164,7 +175,12 @@ create_test
 
 php -v
 
-composer require barryvdh/laravel-ide-helper barryvdh/laravel-debugbar doctrine/dbal
+
+$composer = read-host "composer命令(composer)"
+if (! $composer) {
+    $composer = 'composer'
+}
+& $composer require barryvdh/laravel-ide-helper barryvdh/laravel-debugbar doctrine/dbal
 
 
 Write-Output "create database $db ;" | mysql
@@ -184,12 +200,4 @@ php artisan ide-helper:generate
 git add .
 git commit -m "repo commit first"
 
-if (test-path vendor) {
-    pushd
 
-    cd vendor
-    git add .
-    git ci -m "vendor repo commit first"
-
-    popd
-}
