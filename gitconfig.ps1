@@ -27,4 +27,6 @@ git config --global tag.sort version:refname
 git config --global --add alias.tv  "tag --sort=version:refname"
 git config --global --add alias.tv- "tag --sort=-version:refname"
 
+git config --global log.date iso-strict
+
 
