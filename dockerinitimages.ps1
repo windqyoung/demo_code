@@ -151,6 +151,14 @@ $images = @{
 }
 
 
+if ($args) {
+    $imagesKeys = $args
+} else {
+    $imagesKeys = $images.Keys
+}
+
+Write-Host -ForegroundColor Yellow "I will pull: $imagesKeys"
+
 do {
 
     if ($retry) {
@@ -160,7 +168,7 @@ do {
 
     $retry = $False
 
-    foreach ($name in $images.Keys) {
+    foreach ($name in $imagesKeys) {
         $tagStr = $images[$name]
 
         if (-not $tagStr) {
@@ -172,12 +180,12 @@ do {
         foreach ($t in $tags) {
             if ($t) {
                 $cmd = "docker pull ${name}:${t}"
-                Write-Host -ForegroundColor Blue $cmd 
+                Write-Host -ForegroundColor Blue $cmd
                 docker pull ${name}:${t}
 
                 if (-not $?) {
                     $retry = $True
-                    Write-Host -ForegroundColor Red "run $cmd error, will retry..." 
+                    Write-Host -ForegroundColor Red "run $cmd error, will retry..."
                 }
             }
         }
