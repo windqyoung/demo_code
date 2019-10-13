@@ -166,6 +166,8 @@ do {
         sleep 5
     }
 
+    $isRetring = $retry
+
     $retry = $False
 
     foreach ($name in $imagesKeys) {
@@ -180,7 +182,12 @@ do {
         foreach ($t in $tags) {
             if ($t) {
                 $cmd = "docker pull ${name}:${t}"
-                Write-Host -ForegroundColor Blue $cmd
+                Write-Host -ForegroundColor Blue -NoNewLine $cmd 
+                if ($isRetring) { 
+                    Write-Host -ForegroundColor Red ' # retry' 
+                } else {
+                    Write-Host
+                }
                 docker pull ${name}:${t}
 
                 if (-not $?) {
