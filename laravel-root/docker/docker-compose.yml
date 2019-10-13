@@ -1,0 +1,38 @@
+version: "3.7"
+
+
+services:
+  web:
+    build: build-laravel
+    volumes:
+     - ..:/var/www/laravel
+     - webvol1:/var/www/webvol1
+
+    expose:
+      - 18080
+      - 80
+    ports:
+      - 18080:18080
+      - 10080:80
+    networks:
+      - network-laravel
+    environment:
+      DBPWD: MYSQL_PASSWORD
+  redis:
+    image: redis
+    networks:
+      - network-laravel
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: MYSQL_PASSWORD
+    networks:
+      - network-laravel
+networks:
+  network-laravel:
+
+volumes:
+  webvol1:
+
+
