@@ -30,6 +30,8 @@ git config --global --add alias.tv- "tag --sort=-version:refname"
 
 git config --global log.date iso-strict
 git config --global --add alias.rbi "rebase -i"
+git config --global log.showSignature true
+
 
 
 
