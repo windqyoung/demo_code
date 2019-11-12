@@ -144,7 +144,7 @@ $images = @{
 
     ubuntu = ''
 
-    wordpress = ''
+#    wordpress = ''
 
 
 
