@@ -1,1 +1,11 @@
-{ "name": "wqy/demo_code" }
+{
+    "name": "windqyoung/demo_code",
+    "description": "test",
+    "authors": [
+        {
+            "name": "yangfeng",
+            "email": "windqyoung@qq.com"
+        }
+    ],
+    "require": {}
+}
