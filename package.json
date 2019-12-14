@@ -1,0 +1,19 @@
+{
+  "name": "demo_code",
+  "version": "1.0.0",
+  "description": "一些代码片段",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/windqyoung/demo_code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/windqyoung/demo_code/issues"
+  },
+  "homepage": "https://github.com/windqyoung/demo_code#readme"
+}
