@@ -23,6 +23,7 @@ git config --global --add alias.rt "remote -v"
 git config --global --add core.filemode false
 git config --global --add core.autocrlf "input"
 git config --global --add core.symlinks "false"
+git config --global --add core.quotePath "false"
 
 git config --global tag.sort version:refname
 git config --global --add alias.tv  "tag --sort=version:refname"
@@ -30,7 +31,7 @@ git config --global --add alias.tv- "tag --sort=-version:refname"
 
 git config --global log.date iso-strict
 git config --global --add alias.rbi "rebase -i"
-git config --global log.showSignature true
+# git config --global log.showSignature true
 
 
 
