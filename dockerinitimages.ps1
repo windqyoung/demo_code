@@ -2,14 +2,24 @@
 $images = @{
     adminer = ''
 
-    adoptopenjdk = '12.0.2_10-jdk-hotspot-bionic, 12-jdk-hotspot-bionic, 12-hotspot-bionic, hotspot-bionic 
-12.0.2_10-jre-hotspot-bionic, 12-jre-hotspot-bionic'
+    adoptopenjdk = 'latest
+    11.0.6_10-jdk-hotspot-bionic, 11-jdk-hotspot-bionic, 11-hotspot-bionic
+    13.0.2_8-jdk-hotspot-bionic, 13-jdk-hotspot-bionic, 13-hotspot-bionic
+    
+    
+    '
+    centos = 'latest, centos8, 8, centos8.1.1911, 8.1.1911
+centos7, 7
+centos6, 6
 
-    centos = ''
+
+    '
 
     composer = ''
 
     docker = ''
+
+    elasticsearch = ''
 
     gcc = '6.5.0, 6.5, 6
 7.4.0, 7.4, 7
@@ -25,6 +35,10 @@ $images = @{
     'hello-world' = ''
 
     httpd = ''
+
+    kibana = ''
+
+    logstash = ''
 
     mariadb = ''
 
@@ -53,13 +67,16 @@ $images = @{
 8u222-jre-stretch, 8-jre-stretch
 8u222-jre-slim-buster, 8-jre-slim-buster, 8u222-jre-slim, 8-jre-slim'
 
-    php = '7.4.0-cli-buster, 7.4-cli-buster, 7-cli-buster, cli-buster, 7.4.0-buster, 7.4-buster, 7-buster, buster, 7.4.0-cli, 7.4-cli, 7-cli, cli, 7.4.0, 7.4, 7, latest
-7.4.0-apache-buster, 7.4-apache-buster, 7-apache-buster, apache-buster, 7.4.0-apache, 7.4-apache, 7-apache, apache
-7.4.0-fpm-buster, 7.4-fpm-buster, 7-fpm-buster, fpm-buster, 7.4.0-fpm, 7.4-fpm, 7-fpm, fpm
-7.4.0-zts-buster, 7.4-zts-buster, 7-zts-buster, zts-buster, 7.4.0-zts, 7.4-zts, 7-zts, zts
-7.4.0-cli-alpine3.10, 7.4-cli-alpine3.10, 7-cli-alpine3.10, cli-alpine3.10, 7.4.0-alpine3.10, 7.4-alpine3.10, 7-alpine3.10, alpine3.10, 7.4.0-cli-alpine, 7.4-cli-alpine, 7-cli-alpine, cli-alpine, 7.4.0-alpine, 7.4-alpine, 7-alpine, alpine
-7.4.0-fpm-alpine3.10, 7.4-fpm-alpine3.10, 7-fpm-alpine3.10, fpm-alpine3.10, 7.4.0-fpm-alpine, 7.4-fpm-alpine, 7-fpm-alpine, fpm-alpine
-7.4.0-zts-alpine3.10, 7.4-zts-alpine3.10, 7-zts-alpine3.10, zts-alpine3.10, 7.4.0-zts-alpine, 7.4-zts-alpine, 7-zts-alpine, zts-alpine
+    php = 'lastest, zts, fpm
+    7.4.4-cli-buster, 7.4-cli-buster, 7-cli-buster, cli-buster, 7.4.4-buster, 7.4-buster, 7-buster, buster, 7.4.4-cli, 7.4-cli, 7-cli, cli, 7.4.4, 7.4, 7, latest
+7.4.4-apache-buster, 7.4-apache-buster, 7-apache-buster, apache-buster, 7.4.4-apache, 7.4-apache, 7-apache, apache
+7.4.4-fpm-buster, 7.4-fpm-buster, 7-fpm-buster, fpm-buster, 7.4.4-fpm, 7.4-fpm, 7-fpm, fpm
+7.4.4-zts-buster, 7.4-zts-buster, 7-zts-buster, zts-buster, 7.4.4-zts, 7.4-zts, 7-zts, zts
+7.4.4-cli-alpine3.11, 7.4-cli-alpine3.11, 7-cli-alpine3.11, cli-alpine3.11, 7.4.4-alpine3.11, 7.4-alpine3.11, 7-alpine3.11, alpine3.11, 7.4.4-cli-alpine, 7.4-cli-alpine, 7-cli-alpine, cli-alpine, 7.4.4-alpine, 7.4-alpine, 7-alpine, alpine
+7.4.4-fpm-alpine3.11, 7.4-fpm-alpine3.11, 7-fpm-alpine3.11, fpm-alpine3.11, 7.4.4-fpm-alpine, 7.4-fpm-alpine, 7-fpm-alpine, fpm-alpine
+7.4.4-zts-alpine3.11, 7.4-zts-alpine3.11, 7-zts-alpine3.11, zts-alpine3.11, 7.4.4-zts-alpine, 7.4-zts-alpine, 7-zts-alpine, zts-alpine
+7.4.4-cli-alpine3.10, 7.4-cli-alpine3.10, 7-cli-alpine3.10, cli-alpine3.10, 7.4.4-alpine3.10, 7.4-alpine3.10, 7-alpine3.10, alpine3.10
+7.4.4-zts-alpine3.10, 7.4-zts-alpine3.10, 7-zts-alpine3.10, zts-alpine3.10
 7.3.12-cli-buster, 7.3-cli-buster, 7.3.12-buster, 7.3-buster, 7.3.12-cli, 7.3-cli, 7.3.12, 7.3
 7.3.12-apache-buster, 7.3-apache-buster, 7.3.12-apache, 7.3-apache
 7.3.12-fpm-buster, 7.3-fpm-buster, 7.3.12-fpm, 7.3-fpm
@@ -103,7 +120,9 @@ $images = @{
 7.1.33-fpm-alpine3.9, 7.1-fpm-alpine3.9
 7.1.33-zts-alpine3.9, 7.1-zts-alpine3.9'
 
-    python = '3.8.0b4-buster, 3.8-rc-buster, rc-buster
+    python = 'python
+    
+3.8.0b4-buster, 3.8-rc-buster, rc-buster
 3.8.0b4-slim-buster, 3.8-rc-slim-buster, rc-slim-buster, 3.8.0b4-slim, 3.8-rc-slim, rc-slim
 3.8.0b4-alpine3.10, 3.8-rc-alpine3.10, rc-alpine3.10, 3.8.0b4-alpine, 3.8-rc-alpine, rc-alpine
 3.7.4-buster, 3.7-buster, 3-buster, buster
@@ -134,7 +153,9 @@ $images = @{
 
     rabbitmq = ''
 
-    redis = ''
+    redis = 'latest, 6.0-rc3, 6.0-rc, rc, 6.0-rc3-buster, 6.0-rc-buster, rc-buster
+6.0-rc3-alpine, 6.0-rc-alpine, rc-alpine, 6.0-rc3-alpine3.11, 6.0-rc-alpine3.11, rc-alpine3.11
+5.0.8, 5.0, 5, latest, 5.0.8-buster, 5.0-buster, 5-buster, buster'
 
     redmine = ''
 
