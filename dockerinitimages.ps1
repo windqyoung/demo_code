@@ -2,29 +2,32 @@
 $images = @{
     adminer = ''
 
-    adoptopenjdk = 'latest
-    11.0.6_10-jdk-hotspot-bionic, 11-jdk-hotspot-bionic, 11-hotspot-bionic
-    13.0.2_8-jdk-hotspot-bionic, 13-jdk-hotspot-bionic, 13-hotspot-bionic
-    
+    adoptopenjdk = 'latest hotspot-bionic
+    8-hotspot-bionic 8-hotspot
+    11-hotspot-bionic 11-hotspot
+    13-hotspot-bionic 13-hotspot
+    14-hotspot-bionic 14-hotspot
     
     '
-    centos = 'latest, centos8, 8, centos8.1.1911, 8.1.1911
-centos7, 7
-centos6, 6
-
-
+    centos = 'latest, centos8, 8
+    centos7, 7
     '
 
     composer = ''
 
-    docker = ''
+    debian = 'latest
+    buster
+    '
 
-    elasticsearch = ''
+    docker = 'latest'
 
-    gcc = '6.5.0, 6.5, 6
-7.4.0, 7.4, 7
-8.3.0, 8.3, 8
-9.2.0, 9.2, 9, latest'
+    elasticsearch = '7.6.2'
+
+    gcc = '6
+    7
+    8
+    9
+    latest'
 
     golang = ''
 
@@ -36,9 +39,9 @@ centos6, 6
 
     httpd = ''
 
-    kibana = ''
+    kibana = '7.6.2'
 
-    logstash = ''
+    logstash = '7.6.2'
 
     mariadb = ''
 
@@ -48,114 +51,44 @@ centos6, 6
 
     mongo = ''
 
-    mysql = ''
+    mysql = 'latest 8'
 
     nginx = ''
 
     node = ''
 
-    openjdk = '14-ea-14-jdk-oraclelinux7, 14-ea-14-oraclelinux7, 14-ea-jdk-oraclelinux7, 14-ea-oraclelinux7, 14-jdk-oraclelinux7, 14-oraclelinux7, 14-ea-14-jdk-oracle, 14-ea-14-oracle, 14-ea-jdk-oracle, 14-ea-oracle, 14-jdk-oracle, 14-oracle
-14-ea-12-jdk-alpine3.10, 14-ea-12-alpine3.10, 14-ea-jdk-alpine3.10, 14-ea-alpine3.10, 14-jdk-alpine3.10, 14-alpine3.10, 14-ea-12-jdk-alpine, 14-ea-12-alpine, 14-ea-jdk-alpine, 14-ea-alpine, 14-jdk-alpine, 14-alpine
-13-jdk-oraclelinux7, 13-oraclelinux7, 13-jdk-oracle, 13-oracle
-12.0.2-jdk-oraclelinux7, 12.0.2-oraclelinux7, 12.0-jdk-oraclelinux7, 12.0-oraclelinux7, 12-jdk-oraclelinux7, 12-oraclelinux7, jdk-oraclelinux7, oraclelinux7, 12.0.2-jdk-oracle, 12.0.2-oracle, 12.0-jdk-oracle, 12.0-oracle, 12-jdk-oracle, 12-oracle, jdk-oracle, oracle
-11.0.4-jdk-stretch, 11.0.4-stretch, 11.0-jdk-stretch, 11.0-stretch, 11-jdk-stretch, 11-stretch
-11.0.4-jdk-slim-buster, 11.0.4-slim-buster, 11.0-jdk-slim-buster, 11.0-slim-buster, 11-jdk-slim-buster, 11-slim-buster, 11.0.4-jdk-slim, 11.0.4-slim, 11.0-jdk-slim, 11.0-slim, 11-jdk-slim, 11-slim
-11.0.4-jre-stretch, 11.0-jre-stretch, 11-jre-stretch
-11.0.4-jre-slim-buster, 11.0-jre-slim-buster, 11-jre-slim-buster, 11.0.4-jre-slim, 11.0-jre-slim, 11-jre-slim
-8u222-jdk-stretch, 8u222-stretch, 8-jdk-stretch, 8-stretch
-8u222-jdk-slim-buster, 8u222-slim-buster, 8-jdk-slim-buster, 8-slim-buster, 8u222-jdk-slim, 8u222-slim, 8-jdk-slim, 8-slim
-8u222-jre-stretch, 8-jre-stretch
-8u222-jre-slim-buster, 8-jre-slim-buster, 8u222-jre-slim, 8-jre-slim'
+    openjdk = '15-jdk, 15
+    15-buster
+    14, jdk, latest
+    11-jdk, 11
+    '
 
-    php = 'lastest, zts, fpm
-    7.4.4-cli-buster, 7.4-cli-buster, 7-cli-buster, cli-buster, 7.4.4-buster, 7.4-buster, 7-buster, buster, 7.4.4-cli, 7.4-cli, 7-cli, cli, 7.4.4, 7.4, 7, latest
-7.4.4-apache-buster, 7.4-apache-buster, 7-apache-buster, apache-buster, 7.4.4-apache, 7.4-apache, 7-apache, apache
-7.4.4-fpm-buster, 7.4-fpm-buster, 7-fpm-buster, fpm-buster, 7.4.4-fpm, 7.4-fpm, 7-fpm, fpm
-7.4.4-zts-buster, 7.4-zts-buster, 7-zts-buster, zts-buster, 7.4.4-zts, 7.4-zts, 7-zts, zts
-7.4.4-cli-alpine3.11, 7.4-cli-alpine3.11, 7-cli-alpine3.11, cli-alpine3.11, 7.4.4-alpine3.11, 7.4-alpine3.11, 7-alpine3.11, alpine3.11, 7.4.4-cli-alpine, 7.4-cli-alpine, 7-cli-alpine, cli-alpine, 7.4.4-alpine, 7.4-alpine, 7-alpine, alpine
-7.4.4-fpm-alpine3.11, 7.4-fpm-alpine3.11, 7-fpm-alpine3.11, fpm-alpine3.11, 7.4.4-fpm-alpine, 7.4-fpm-alpine, 7-fpm-alpine, fpm-alpine
-7.4.4-zts-alpine3.11, 7.4-zts-alpine3.11, 7-zts-alpine3.11, zts-alpine3.11, 7.4.4-zts-alpine, 7.4-zts-alpine, 7-zts-alpine, zts-alpine
-7.4.4-cli-alpine3.10, 7.4-cli-alpine3.10, 7-cli-alpine3.10, cli-alpine3.10, 7.4.4-alpine3.10, 7.4-alpine3.10, 7-alpine3.10, alpine3.10
-7.4.4-zts-alpine3.10, 7.4-zts-alpine3.10, 7-zts-alpine3.10, zts-alpine3.10
-7.3.12-cli-buster, 7.3-cli-buster, 7.3.12-buster, 7.3-buster, 7.3.12-cli, 7.3-cli, 7.3.12, 7.3
-7.3.12-apache-buster, 7.3-apache-buster, 7.3.12-apache, 7.3-apache
-7.3.12-fpm-buster, 7.3-fpm-buster, 7.3.12-fpm, 7.3-fpm
-7.3.12-zts-buster, 7.3-zts-buster, 7.3.12-zts, 7.3-zts
-7.3.12-cli-stretch, 7.3-cli-stretch, 7.3.12-stretch, 7.3-stretch
-7.3.12-apache-stretch, 7.3-apache-stretch
-7.3.12-fpm-stretch, 7.3-fpm-stretch
-7.3.12-zts-stretch, 7.3-zts-stretch
-7.3.12-cli-alpine3.10, 7.3-cli-alpine3.10, 7.3.12-alpine3.10, 7.3-alpine3.10, 7.3.12-cli-alpine, 7.3-cli-alpine, 7.3.12-alpine, 7.3-alpine
-7.3.12-fpm-alpine3.10, 7.3-fpm-alpine3.10, 7.3.12-fpm-alpine, 7.3-fpm-alpine
-7.3.12-zts-alpine3.10, 7.3-zts-alpine3.10, 7.3.12-zts-alpine, 7.3-zts-alpine
-7.3.12-cli-alpine3.9, 7.3-cli-alpine3.9, 7.3.12-alpine3.9, 7.3-alpine3.9
-7.3.12-fpm-alpine3.9, 7.3-fpm-alpine3.9
-7.3.12-zts-alpine3.9, 7.3-zts-alpine3.9
-7.2.25-cli-buster, 7.2-cli-buster, 7.2.25-buster, 7.2-buster, 7.2.25-cli, 7.2-cli, 7.2.25, 7.2
-7.2.25-apache-buster, 7.2-apache-buster, 7.2.25-apache, 7.2-apache
-7.2.25-fpm-buster, 7.2-fpm-buster, 7.2.25-fpm, 7.2-fpm
-7.2.25-zts-buster, 7.2-zts-buster, 7.2.25-zts, 7.2-zts
-7.2.25-cli-stretch, 7.2-cli-stretch, 7.2.25-stretch, 7.2-stretch
-7.2.25-apache-stretch, 7.2-apache-stretch
-7.2.25-fpm-stretch, 7.2-fpm-stretch
-7.2.25-zts-stretch, 7.2-zts-stretch
-7.2.25-cli-alpine3.10, 7.2-cli-alpine3.10, 7.2.25-alpine3.10, 7.2-alpine3.10, 7.2.25-cli-alpine, 7.2-cli-alpine, 7.2.25-alpine, 7.2-alpine
-7.2.25-fpm-alpine3.10, 7.2-fpm-alpine3.10, 7.2.25-fpm-alpine, 7.2-fpm-alpine
-7.2.25-zts-alpine3.10, 7.2-zts-alpine3.10, 7.2.25-zts-alpine, 7.2-zts-alpine
-7.2.25-cli-alpine3.9, 7.2-cli-alpine3.9, 7.2.25-alpine3.9, 7.2-alpine3.9
-7.2.25-fpm-alpine3.9, 7.2-fpm-alpine3.9
-7.2.25-zts-alpine3.9, 7.2-zts-alpine3.9
-7.1.33-cli-buster, 7.1-cli-buster, 7.1.33-buster, 7.1-buster, 7.1.33-cli, 7.1-cli, 7.1.33, 7.1
-7.1.33-apache-buster, 7.1-apache-buster, 7.1.33-apache, 7.1-apache
-7.1.33-fpm-buster, 7.1-fpm-buster, 7.1.33-fpm, 7.1-fpm
-7.1.33-zts-buster, 7.1-zts-buster, 7.1.33-zts, 7.1-zts
-7.1.33-cli-stretch, 7.1-cli-stretch, 7.1.33-stretch, 7.1-stretch
-7.1.33-apache-stretch, 7.1-apache-stretch
-7.1.33-fpm-stretch, 7.1-fpm-stretch
-7.1.33-zts-stretch, 7.1-zts-stretch
-7.1.33-cli-alpine3.10, 7.1-cli-alpine3.10, 7.1.33-alpine3.10, 7.1-alpine3.10, 7.1.33-cli-alpine, 7.1-cli-alpine, 7.1.33-alpine, 7.1-alpine
-7.1.33-fpm-alpine3.10, 7.1-fpm-alpine3.10, 7.1.33-fpm-alpine, 7.1-fpm-alpine
-7.1.33-zts-alpine3.10, 7.1-zts-alpine3.10, 7.1.33-zts-alpine, 7.1-zts-alpine
-7.1.33-cli-alpine3.9, 7.1-cli-alpine3.9, 7.1.33-alpine3.9, 7.1-alpine3.9
-7.1.33-fpm-alpine3.9, 7.1-fpm-alpine3.9
-7.1.33-zts-alpine3.9, 7.1-zts-alpine3.9'
+    php = 'latest, zts, fpm, apache
+    7.4, 7
+    7.4-apache 7-apache
+    7.4-fpm, 7-fpm
+    7.4-zts, 7-zts
+    7.3 7.3-apache 7.3-fpm 7.3-zts
+    7.2-cli, 7.2 7.2-apache 7.2-fpm 7.2-zts
+    5.6-cli, 5.6 5.6-apache 5.6-fpm 5.6-zts
+    5.4-cli, 5.4 5.4-apache 5.4-fpm
+    '
 
-    python = 'python
-    
-3.8.0b4-buster, 3.8-rc-buster, rc-buster
-3.8.0b4-slim-buster, 3.8-rc-slim-buster, rc-slim-buster, 3.8.0b4-slim, 3.8-rc-slim, rc-slim
-3.8.0b4-alpine3.10, 3.8-rc-alpine3.10, rc-alpine3.10, 3.8.0b4-alpine, 3.8-rc-alpine, rc-alpine
-3.7.4-buster, 3.7-buster, 3-buster, buster
-3.7.4-slim-buster, 3.7-slim-buster, 3-slim-buster, slim-buster, 3.7.4-slim, 3.7-slim, 3-slim, slim
-3.7.4-stretch, 3.7-stretch, 3-stretch, stretch
-3.7.4-slim-stretch, 3.7-slim-stretch, 3-slim-stretch, slim-stretch
-3.7.4-alpine3.10, 3.7-alpine3.10, 3-alpine3.10, alpine3.10, 3.7.4-alpine, 3.7-alpine, 3-alpine, alpine
-3.7.4-alpine3.9, 3.7-alpine3.9, 3-alpine3.9, alpine3.9
-3.6.9-buster, 3.6-buster
-3.6.9-slim-buster, 3.6-slim-buster, 3.6.9-slim, 3.6-slim
-3.6.9-stretch, 3.6-stretch
-3.6.9-slim-stretch, 3.6-slim-stretch
-3.6.9-alpine3.10, 3.6-alpine3.10, 3.6.9-alpine, 3.6-alpine
-3.6.9-alpine3.9, 3.6-alpine3.9
-3.5.7-buster, 3.5-buster
-3.5.7-slim-buster, 3.5-slim-buster, 3.5.7-slim, 3.5-slim
-3.5.7-stretch, 3.5-stretch
-3.5.7-slim-stretch, 3.5-slim-stretch
-3.5.7-alpine3.10, 3.5-alpine3.10, 3.5.7-alpine, 3.5-alpine
-3.5.7-alpine3.9, 3.5-alpine3.9
-2.7.16-buster, 2.7-buster, 2-buster
-2.7.16-slim-buster, 2.7-slim-buster, 2-slim-buster, 2.7.16-slim, 2.7-slim, 2-slim
-2.7.16-stretch, 2.7-stretch, 2-stretch
-2.7.16-slim-stretch, 2.7-slim-stretch, 2-slim-stretch
-2.7.16-alpine3.10, 2.7-alpine3.10, 2-alpine3.10, 2.7.16-alpine, 2.7-alpine, 2-alpine
-2.7.16-alpine3.9, 2.7-alpine3.9, 2-alpine3.9
-'
+    python = 'latest rc
+    3 3.8
+    3.7
+    3.6
+    2
+    2.7
+
+    '
 
     rabbitmq = ''
 
-    redis = 'latest, 6.0-rc3, 6.0-rc, rc, 6.0-rc3-buster, 6.0-rc-buster, rc-buster
-6.0-rc3-alpine, 6.0-rc-alpine, rc-alpine, 6.0-rc3-alpine3.11, 6.0-rc-alpine3.11, rc-alpine3.11
-5.0.8, 5.0, 5, latest, 5.0.8-buster, 5.0-buster, 5-buster, buster'
+    redis = 'latest
+    rc-buster
+    5-buster, buster
+    '
 
     redmine = ''
 
@@ -163,10 +96,20 @@ centos6, 6
 
     thrift = ''
 
-    ubuntu = ''
+    tomcat = 'latest
+    8
+    9
+    '
 
-#    wordpress = ''
+    ubuntu = 'latest
+    bionic
+    '
 
+    zookeeper = 'latest
+    3.4
+    3.5
+    3.6
+    '
 
 
 }
@@ -198,7 +141,7 @@ do {
             $tagStr = 'latest'
         }
 
-        $tags = $tagStr -split ',|\s+'
+        $tags = $tagStr -split '\s*,\s*|\s+'
 
         foreach ($t in $tags) {
             if ($t) {
