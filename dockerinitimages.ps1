@@ -1,5 +1,6 @@
 
 $images = @{
+	'kd93/pixeladmin' = '1.3'
     adminer = ''
 
     adoptopenjdk = 'latest hotspot-bionic
@@ -7,8 +8,8 @@ $images = @{
     11-hotspot-bionic 11-hotspot
     13-hotspot-bionic 13-hotspot
     14-hotspot-bionic 14-hotspot
-    
     '
+
     centos = 'latest, centos8, 8
     centos7, 7
     '
@@ -80,7 +81,6 @@ $images = @{
     3.6
     2
     2.7
-
     '
 
     rabbitmq = ''
@@ -110,8 +110,6 @@ $images = @{
     3.5
     3.6
     '
-
-
 }
 
 
@@ -121,14 +119,15 @@ if ($args) {
     $imagesKeys = $images.Keys
 }
 
-Write-Host -ForegroundColor Yellow "I will pull: $imagesKeys"
 
 do {
-
     if ($retry) {
-        Write-Host -ForegroundColor Red "RETRYING ......................."
-        sleep 5
+        Write-Host -ForegroundColor Red "RETRYING......"
+        Start-Sleep 5
     }
+    Write-Host -ForegroundColor Yellow "I will pull: $imagesKeys"
+
+    $nextLoopImages = @{}
 
     $isRetring = $retry
 
@@ -156,10 +155,14 @@ do {
 
                 if (-not $?) {
                     $retry = $True
+                    $nextLoopImages[$name] += ',' + $t
                     Write-Host -ForegroundColor Red "run $cmd error, will retry..."
                 }
             }
         }
     }
+
+    $images = $nextLoopImages;
+    $imagesKeys = $images.Keys
 
 } while ($retry)
