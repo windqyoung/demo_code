@@ -1,4 +1,6 @@
 
+# from https://github.com/docker-library/official-images/tree/master/library
+
 $images = @{
 	'kd93/pixeladmin' = '1.3'
     adminer = ''
@@ -18,6 +20,7 @@ $images = @{
 
     debian = 'latest
     buster
+    bullseye
     '
 
     docker = 'latest'
@@ -35,6 +38,8 @@ $images = @{
     gradle = ''
 
     groovy = ''
+
+    haproxy = ''
 
     'hello-world' = ''
 
@@ -85,12 +90,15 @@ $images = @{
 
     rabbitmq = ''
 
-    redis = 'latest
+    redis = 'latest buster
     rc-buster
-    5-buster, buster
+    5-buster
+    6-buster
     '
 
     redmine = ''
+
+    registry = ''
 
     ruby = ''
 
@@ -99,10 +107,12 @@ $images = @{
     tomcat = 'latest
     8
     9
+    10
     '
 
     ubuntu = 'latest
     bionic
+    focal
     '
 
     zookeeper = 'latest
