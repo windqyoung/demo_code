@@ -47,6 +47,10 @@ $images = @{
 
     kibana = '7.6.2'
 
+    'kubernetesui/metrics-scraper' = 'v1.0.4'
+
+    'kubernetesui/dashboard' = 'v2.0.1'
+
     logstash = '7.6.2'
 
     mariadb = ''
