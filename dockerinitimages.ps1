@@ -74,6 +74,7 @@ $images = @{
     '
 
     php = 'latest, zts, fpm, apache
+    rc-cli, rc-apache, rc-fpm, rc-zts
     7.4, 7
     7.4-apache 7-apache
     7.4-fpm, 7-fpm
