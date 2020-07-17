@@ -1,0 +1,27 @@
+{
+    "editor.mouseWheelZoom": true,
+    "editor.fontFamily": "JetBrains Mono ,Consolas, 'Courier New', monospace",
+    "files.autoSave": "onFocusChange",
+    "editor.columnSelection": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "breadcrumbs.enabled": true,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": false,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "editor.wordWrap": "on",
+    "files.exclude": {
+        ".buildpath": true,
+        ".project": true
+    },
+    "editor.wrappingIndent": "indent",
+    "editor.minimap.enabled": false,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "workbench.colorTheme": "Default Light+",
+    "window.customMenuBarAltFocus": false,
+    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+    "terminal.integrated.enableBell": true,
+    "php.executablePath": "c:\\xampp\\php\\php.exe",
+    "phpTools.language": "zh"
+}
