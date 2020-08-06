@@ -21,7 +21,7 @@ git config --global --add alias.br      "branch -vv"
 git config --global --add alias.bi      "bisect"
 git config --global --add alias.ns      "log --name-status --color"
 git config --global --add alias.rt      "remote -v"
-git config --global --add alias.pushot  "push origin --tags"
+git config --global --add alias.pushot  "push --tags origin"
 git config --global --add alias.pusho   "push origin"
 
 git config --global --add core.filemode false
