@@ -1,0 +1,63 @@
+FROM php:5.4-apache
+
+COPY start.sh /root/start.sh
+COPY phpinfo.php /var/www/html/
+
+COPY sources.list /etc/apt/sources.list
+
+COPY apache.sites-available/ /etc/apache2/sites-available/
+COPY apache.ssl/ /etc/apache2/ssl/
+
+COPY mysql.expect /root/mysql.expect
+
+RUN     echo '修改别名' ; \
+    sed -i -e '/# alias l/ { s/#// }' /root/.bashrc ; \
+
+    echo '开启apache模块'; \
+    a2enmod ssl rewrite; \
+
+    echo '开启apache网站'; \
+    a2ensite 000-default.conf default-ssl.conf \
+        ; \
+
+    apt-get update || true ; \
+    apt-get upgrade -y ; \
+
+    apt-get install -y expect wget vim htop tree lsof redis-server beanstalkd  ; \
+
+    echo '设置redis密码'; \
+    sed -i -e '/# requirepass/ { s/.*/&0\nrequirepass 1234/ } ' /etc/redis/redis.conf ; \
+
+    echo '安装php模块'; \
+    apt-get install -y libpng-dev libjpeg-dev libwebp-dev libbz2-dev libmcrypt-dev libxml2-dev libxslt-dev libfreetype6-dev ; \
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/freetype2/ ; \
+    docker-php-ext-install bz2 calendar exif gd gettext mbstring mcrypt mysql mysqli pcntl pdo_mysql shmop  sockets sysvmsg sysvsem sysvshm wddx xml xsl zip  ; \
+
+    echo '设置时区'; \
+    echo 'Asia/Shanghai' > /etc/timezone ; \
+    ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime -f ; \
+
+    mkdir /var/src ; \
+
+    echo '下载并安装redis(http://pecl.php.net/get/redis-4.3.0.tgz)' ; \
+    wget -O /var/src/redis-4.3.0.tgz http://pecl.php.net/get/redis-4.3.0.tgz ; \
+    cd /var/src ; tar zxvf redis-4.3.0.tgz ; cd redis-4.3.0; \
+    phpize; ./configure; make ; make install ; docker-php-ext-enable redis ; \
+    rm -rf /var/src/redis* ; \
+
+    echo '下载并安装xdebug(http://pecl.php.net/get/xdebug-2.4.1.tgz)'; \
+    wget -O /var/src/xdebug-2.4.1.tgz http://pecl.php.net/get/xdebug-2.4.1.tgz ;\
+    cd /var/src ; tar zxvf xdebug-2.4.1.tgz ; cd xdebug-2.4.1; \
+    phpize; ./configure; make ; make install ; docker-php-ext-enable xdebug ; \
+    rm -rf /var/src/xdebug* ; \
+
+    echo '安装Mysql'; \
+    expect /root/mysql.expect ; \
+    sed -e '/bind-address/ { s/.*/bind-address = 0.0.0.0 # &0/ }' -i /etc/mysql/my.cnf ; \
+    service mysql restart ; \
+    echo '创建mysql用户名, 导入数据库'; \
+
+    echo '环境处理完成'
+
+
+CMD /root/start.sh
