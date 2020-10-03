@@ -45,13 +45,13 @@ $images = @{
 
     httpd = ''
 
-    kibana = '7.6.2'
+    kibana = '7.9.2'
 
     'kubernetesui/metrics-scraper' = 'v1.0.4'
 
     'kubernetesui/dashboard' = 'v2.0.1'
 
-    logstash = '7.6.2'
+    logstash = '7.9.2'
 
     mariadb = ''
 
@@ -71,6 +71,7 @@ $images = @{
     15-buster
     14, jdk, latest
     11-jdk, 11
+    16
     '
 
     php = 'latest, zts, fpm, apache
