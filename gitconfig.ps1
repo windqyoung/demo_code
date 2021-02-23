@@ -38,6 +38,7 @@ git config --global --add alias.rbi "rebase -i"
 # git config --global log.showSignature true
 
 
+git config --global alias.nw 'log --no-walk'
 
 
 
